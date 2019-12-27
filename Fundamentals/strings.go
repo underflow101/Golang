@@ -12,6 +12,6 @@ Sparta!!!\n`
 	fmt.Println(s)
 
 	//Interpreted String Literal
-	var d string = "This\nis\nSparta!!!"
+	var d string = "This\nis\nSparta!!!\nAND\nSomething\nMore?!"
 	fmt.Println(d)
 }
