@@ -2,9 +2,7 @@
 
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 func main() {
 	//Raw String Literal
@@ -12,7 +10,7 @@ func main() {
 is
 Sparta!!!\n`
 	fmt.Println(s)
-
+	
 	//Interpreted String Literal
 	var d string = "This\nis\nSparta!!!\nAND\nSomething\nMore?!"
 	fmt.Println(d)
