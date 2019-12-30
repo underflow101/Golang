@@ -15,9 +15,9 @@ const (
 )
 
 type Task struct {
-	Title    string
-	Status   status
-	Deadline *Deadline
+	Title  string
+	Status status
+	*Deadline
 }
 
 func (d *Deadline) OverDue() bool {
