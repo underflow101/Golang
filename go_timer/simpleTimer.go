@@ -16,10 +16,14 @@ func BlockingTimer(secs int) {
 }
 
 func CallBackTimer(secs int) {
-	time.AfterFunc
+	time.AfterFunc((7 * time.Second), func() {
+		//메시지를 없애는 코드
+	})
 }
 
-func SimpleTimer() {
+func simpleTimer() {
 	fmt.Println("Start simpleTimer")
-	Countdown(5)
+	BlockingTimer(5)
+	fmt.Println("YEAE")
+	CallBackTimer(7)
 }
