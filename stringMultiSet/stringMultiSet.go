@@ -1,4 +1,4 @@
-package StringMultiSet
+package stringmultiset
 
 import "strings"
 
