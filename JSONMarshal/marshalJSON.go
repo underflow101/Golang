@@ -1,3 +1,5 @@
+// JSON Serialization (직렬화)
+
 package main
 
 import (
