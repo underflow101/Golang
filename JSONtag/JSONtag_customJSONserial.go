@@ -14,7 +14,7 @@ type Deadline struct {
 }
 
 const (
-	UNKNOWN = iota
+	UNKNOWN status = iota
 	TODO
 	DONE
 )
@@ -70,6 +70,7 @@ func (s *status) UnmarshalJSON(data []byte) error {
 
 func main() {
 	b := []byte(`{"Title":"Buy Milk","Status":2,"Deadline":"2020-05-26T23:59:59Z"}`)
-	t := (s)UnmarshalJSON(b)
+	t := Task{}
+	t.Status.UnmarshalJSON(b)
 	fmt.Println(t)
 }
