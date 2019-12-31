@@ -30,16 +30,21 @@ type Task struct {
 	Deadline *Deadline
 }
 
+func marshalJSON(t Task) string {
+	b, err := json.Marshal(t)
+	if err != nil {
+		log.Println(err)
+		return "Error"
+	}
+	return string(b)
+}
+
 func main() {
 	t := Task{
 		"Laundry",
 		DONE,
 		NewDeadline(time.Date(2020, time.January, 16, 23, 59, 59, 0, time.UTC)),
 	}
-	b, err := json.Marshal(t)
-	if err != nil {
-		log.Println(err)
-		return
-	}
-	fmt.Println(string(b))
+	b := marshalJSON(t)
+	fmt.Println(b)
 }
