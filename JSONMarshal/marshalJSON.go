@@ -19,7 +19,7 @@ const (
 )
 
 func NewDeadline(t time.Time) *Deadline {
-	return &Deadline(t)
+	return &Deadline{t}
 }
 
 type Task struct {
