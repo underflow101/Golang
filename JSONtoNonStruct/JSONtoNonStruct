@@ -1,2 +1,0 @@
-// JSON to non-struct
-
