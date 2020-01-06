@@ -4,7 +4,6 @@ package main
 import (
 	"fmt"
 	"time"
-	//"encoding/json"
 )
 
 type status int
