@@ -46,7 +46,7 @@ func (t IncludeSubTasks) String() string {
 func (t Task) String() string {
 	check := "v"
 	if t.Status == TODO {
-		check = " "
+		check = "-"
 	} else if t.Status == UNKNOWN {
 		check = "?"
 	}
