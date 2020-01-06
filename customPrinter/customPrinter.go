@@ -50,7 +50,7 @@ func (t Task) String() string {
 	} else if t.Status == UNKNOWN {
 		check = "?"
 	}
-	return fmt.Sprint("[%s] %s %s", check, t.Title, t.Deadline)
+	return fmt.Sprintf("[%s] %s %s", check, t.Title, t.Deadline)
 }
 
 func PrintStringer(data fmt.Stringer) {
