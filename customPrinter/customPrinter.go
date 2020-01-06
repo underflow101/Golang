@@ -2,10 +2,9 @@
 
 package main
 import (
-	"bufio"
 	"fmt"
 	"time"
-	"encoding/json"
+	//"encoding/json"
 )
 
 type status int
@@ -47,8 +46,10 @@ func (t IncludeSubTasks) String() string {
 
 func (t Task) String() string {
 	check := "v"
-	if t.Status != DONE {
+	if t.Status == TODO {
 		check = " "
+	} else if t.Status == UNKNOWN {
+		check = "?"
 	}
 	return fmt.Sprint("[%s] %s %s", check, t.Title, t.Deadline)
 }
@@ -67,14 +68,38 @@ func main() {
 			Title: "AI Study",
 			Status: TODO,
 			Deadline: NewDeadline(time.Date(2020, time.January, 15, 23, 59, 59, 0, time.UTC)),
-			Prioirty: 2,
+			Priority: 3,
 			SubTasks: []Task{{
 				Title: "Tensorflow-CNN",
+				Status: DONE,
+				Deadline: NewDeadline(time.Date(2020, time.January, 13, 23, 59, 59, 0, time.UTC)),
+				Priority: 1,
+			}, {
+				Title: "Keras",
 				Status: TODO,
-				Deadline: NewDeadline(time.Date(2020, ))
-			}
-			}
-		},
-	}
-	}))
+				Deadline: NewDeadline(time.Date(2020, time.January, 14, 23, 59, 59, 0, time.UTC)),
+				Priority: 2,
+			}}},
+			{
+				Title: "Golang Study",
+				Status: UNKNOWN,
+				Deadline: NewDeadline(time.Date(2020, time.January, 8, 23, 59, 59, 0, time.UTC)),
+				Priority: 1,
+			}, {
+				Title: "MQTT",
+				Status: DONE,
+				Deadline: NewDeadline(time.Date(2020, time.January, 10, 23, 59, 59, 0, time.UTC)),
+				Priority: 2,
+			}}}))
+	// fmt.Println(IncludeSubTasks(Task{
+	// 	Title: "Life",
+	// 	Status: UNKNOWN,
+	// 	Deadline: NewDeadline(time.Date(2150, time.January, 31, 23, 59, 59, 0, time.UTC())),
+	// 	Priority: 999999999999,
+	// 	SubTasks: []Task{
+	// 		Title: "is Death",
+	// 		Status: DONE,
+	// 		Deadline: NewDeadline(time.Date(2150, time.January, 31, 23, 59, 59, 0, time.UTC)),
+	// 		Priority: 1,
+	// }}))
 }
