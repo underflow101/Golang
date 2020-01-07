@@ -194,7 +194,8 @@ func apiHandler(w http.ResponseWriter, r *http.Request) {
 
 	switch r.Method {
 	case "GET":
-		panic("wow")
+		id, err := getID()
+
 	case "PUT":
 		panic("wow")
 	case "POST":
