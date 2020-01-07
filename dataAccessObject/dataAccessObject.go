@@ -68,20 +68,20 @@ func PrintStringer(data fmt.Stringer) {
 
 // Data Access Object
 type DataAccess interface {
-	Get(id ID) (task.Task, error)
-	Put(id ID, t task.Task) error
-	Post(t task.Task) (ID, error)
+	Get(id ID) (Task, error)
+	Put(id ID, t Task) error
+	Post(t Task) (ID, error)
 	Delete(id ID) error
 }
 
 type MemoryDataAccess struct {
-	tasks  map[ID]task.Task
+	tasks  map[ID]Task
 	nextID ID
 }
 
 func NewMemoryDataAccess() DataAccess {
 	return &MemoryDataAccess{
-		tasks:  map[ID]task.Task{},
+		tasks:  map[ID]Task{},
 		nextID: ID(1),
 	}
 }
@@ -91,7 +91,7 @@ var ErrTaskNotExist = errors.New("task does not exist")
 func (m *MemoryDataAccess) Get(id ID) (task.Task, error) {
 	t, exists := m.tasks[id]
 	if !exists {
-		return task.Task{}, ErrTaskNotExist
+		return Task{}, ErrTaskNotExist
 	}
 	return t, nil
 }
@@ -156,7 +156,7 @@ func (err *ResponseError) UnmarshalJSON(b []byte) error {
 // Response struct
 type Response struct {
 	ID    ID            `json:"id,omitempty"`
-	Task  task.Task     `json:"task"`
+	Task  Task          `json:"task"`
 	Error ResponseError `json:"error"`
 }
 
@@ -166,7 +166,7 @@ const pathPrefix = "/api/v1/task/"
 
 func apiHandler(w http.ResponseWriter, r *http.Request) {
 	getID := func() (ID, error) {
-		id := task.ID(r.URL.Path[len(pathPrefix):])
+		id := Task.ID(r.URL.Path[len(pathPrefix):])
 		if id == "" {
 			return id, errors.New("apiHandler: ID is empty")
 		}
@@ -195,13 +195,75 @@ func apiHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "GET":
 		id, err := getID()
-
+		if err != nil {
+			log.Println(err)
+			return
+		}
+		t, err := m.Get(id)
+		err = json.NewEncoder(w).Encode(Response{
+			ID:    id,
+			Task:  t,
+			Error: ResponseError{err},
+		})
+		if err != nil {
+			log.Println(err)
+		}
 	case "PUT":
-		panic("wow")
+		id, err := getID()
+		if err != nil {
+			log.Println(err)
+			return
+		}
+		tasks, err := getTasks()
+		if err != nil {
+			log.Println(err)
+			return
+		}
+		for _, t := range tasks {
+			err = m.Put(id, t)
+			err = json.NewEncoder(w).Encode(Response{
+				ID:    id,
+				Task:  t,
+				Error: ResponseError{err},
+			})
+			if err != nil {
+				log.Println(err)
+				return
+			}
+		}
 	case "POST":
-		panic("wow")
+		tasks, err := getTasks()
+		if err != nil {
+			log.Println(err)
+			return
+		}
+		for _, t := range tasks {
+			id, err := m.Post(t)
+			err = json.NewEncoder(w).Encode(Response{
+				ID:    id,
+				Task:  t,
+				Error: ResponseError{err},
+			})
+			if err != nil {
+				log.Println(err)
+				return
+			}
+		}
 	case "DELETE":
-		panic("wow")
+		id, err := getID()
+		if err != nil {
+			log.Println(err)
+			return
+		}
+		err = m.Delete(id)
+		err = json.NewEncoder(w).Encode(Response{
+			ID:    id,
+			Error: ResponseError{err},
+		})
+		if err != nil {
+			log.Println(err)
+			return
+		}
 	}
 }
 
