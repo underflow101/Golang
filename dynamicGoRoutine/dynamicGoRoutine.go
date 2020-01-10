@@ -5,6 +5,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"runtime"
 )
 
 type IntPipe func(context.Context, <-chan int) <-chan int
@@ -82,6 +83,9 @@ func PrintPrimes(max int) {
 }
 
 func main() {
+	x := runtime.NumCPU()
+	fmt.Println(x)
+	runtime.GOMAXPROCS(x)
 	PrintPrimes(1000)
 	fmt.Println(res)
 }
