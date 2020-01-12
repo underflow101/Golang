@@ -17,6 +17,7 @@ const (
 	UNKNOWN status = iota
 	TODO
 	DONE
+	YET
 )
 
 func NewDeadline(t time.Time) *Deadline {
