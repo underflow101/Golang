@@ -1,4 +1,5 @@
 // Custom Printer
+// Use this to make printer more useful
 
 package main
 import (
