@@ -1,3 +1,5 @@
+// improved deadline with time package
+
 package main
 
 import (
