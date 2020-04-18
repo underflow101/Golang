@@ -1,4 +1,5 @@
 // Channel to communicate within go routines
+// Can be used in queue mechanism
 
 package main
 
