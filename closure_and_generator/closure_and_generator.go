@@ -1,6 +1,7 @@
+//Closure of Golang
+
 package main
 
-//Closure of Golang
 func Closure_nextVal() func() int {
 	i := 0
 	return func() int {
