@@ -2,6 +2,7 @@
 // Use this to make printer more useful
 
 package main
+
 import (
 	"fmt"
 	"time"
