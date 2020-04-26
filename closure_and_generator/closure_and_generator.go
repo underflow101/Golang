@@ -1,4 +1,4 @@
-//Closure of Golang
+// Closure of Golang
 
 package main
 
