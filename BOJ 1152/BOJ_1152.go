@@ -1,5 +1,4 @@
 //BOJ 1152 단어의 개수
-
 package main
 
 import "fmt"
