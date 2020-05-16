@@ -1,4 +1,4 @@
-//Strings
+// Strings
 
 package main
 
