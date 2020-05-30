@@ -1,4 +1,4 @@
-// Gob
+// Gob.
 // Gob is a special encoding format in Golang that can replace JSON format
 
 package main
