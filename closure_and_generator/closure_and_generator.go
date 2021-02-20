@@ -10,12 +10,13 @@ func Closure_nextVal() func() int {
 	}
 }
 func main() {
-	//Generator
+	// closure
 	next := Closure_nextVal()
 	println(next())
 	println(next())
 	println(next())
-
+	
+	// closure
 	wowNext := Closure_nextVal()
 	println(wowNext())
 	println(wowNext())
