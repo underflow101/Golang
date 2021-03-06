@@ -1,5 +1,5 @@
 // BOJ 1152 단어의 개수
-// Slow version
+
 package main
 
 import "fmt"
