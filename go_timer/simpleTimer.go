@@ -17,7 +17,7 @@ func BlockingTimer(secs int) {
 
 func CallBackTimer(secs int) {
 	time.AfterFunc((7 * time.Second), func() {
-		//메시지를 없애는 코드
+		
 	})
 }
 

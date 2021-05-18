@@ -51,5 +51,4 @@ const (
 
 func main() {
 	var myTask = task{"work", false, nil}
-
 }

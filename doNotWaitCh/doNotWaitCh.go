@@ -6,12 +6,6 @@ import "fmt"
 
 func FanIn3(in1, in2, in3 <-chan int) <-chan int {
 	out := make(chan int)
-	// openCnt := 3
-	// closeChan := func(c *<-chan int) bool {
-	// 	*c = nil
-	// 	openCnt--
-	// 	return openCnt == 0
-	// }
 	go func() {
 		defer close(out)
 		for {

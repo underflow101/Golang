@@ -27,7 +27,7 @@ func FanIn(ins ...<-chan int) <-chan int {
 	return out
 }
 
-func main() { // fan-out
+func main() {
 	c := make(chan int)
 	for i := 0; i < 3; i++ {
 		go func(i int) {

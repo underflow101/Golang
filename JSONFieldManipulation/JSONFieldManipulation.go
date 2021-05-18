@@ -1,4 +1,4 @@
-// JSON Field Manipulation
+// JSON field Manipulation
 
 package main
 import (
